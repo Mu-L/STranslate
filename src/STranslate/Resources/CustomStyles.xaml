@@ -36,6 +36,8 @@
         <Setter Property="FontSize" Value="{DynamicResource STControlFontSize14}" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
         <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
+        <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
+        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
     </Style>
 
     <!--#endregion-->
@@ -248,6 +250,8 @@
     <Style x:Key="TextBlockSimilarStyle" TargetType="TextBox">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
+        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
         <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
         <Setter Property="CaretBrush" Value="{DynamicResource {x:Static ui:ThemeKeys.TextControlForegroundKey}}" />
