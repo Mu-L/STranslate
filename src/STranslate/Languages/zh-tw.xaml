@@ -329,6 +329,10 @@
     <sys:String x:Key="Prompt">提示</sys:String>
     <sys:String x:Key="Cancel">取消</sys:String>
     <sys:String x:Key="Copy">複製</sys:String>
+    <sys:String x:Key="Cut">剪下</sys:String>
+    <sys:String x:Key="Paste">貼上</sys:String>
+    <sys:String x:Key="Undo">復原</sys:String>
+    <sys:String x:Key="Redo">重做</sys:String>
     <sys:String x:Key="Show">顯示</sys:String>
     <sys:String x:Key="Hide">隱藏</sys:String>
     <sys:String x:Key="Enable">啟用</sys:String>
