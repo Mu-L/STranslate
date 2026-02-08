@@ -9,6 +9,7 @@ namespace STranslate.Helpers;
 public static class TextContextMenuFix
 {
     private static bool _installed;
+    private static readonly RoutedEventHandler MenuItemClickHandler = OnTextContextMenuMenuItemClick;
 
     public static void Install()
     {
@@ -32,31 +33,22 @@ public static class TextContextMenuFix
     {
         if (sender is not FrameworkElement fe) return;
 
-        var desiredMenu = ResolveDefaultTextContextMenu();
-        if (desiredMenu is null) return;
-
-        if (fe.ContextMenu is ContextMenu existingMenu &&
-            !ReferenceEquals(existingMenu, desiredMenu) &&
-            !LooksLikeTextContextMenu(existingMenu))
+        if (fe.ContextMenu is ContextMenu existingMenu && !LooksLikeTextContextMenu(existingMenu))
             return;
 
-        if (!ReferenceEquals(fe.ContextMenu, desiredMenu))
-            fe.ContextMenu = desiredMenu;
+        fe.SetResourceReference(FrameworkElement.ContextMenuProperty, "DefaultTextBoxContextMenu");
 
-        EnsureSeparatorCleanupHandler(desiredMenu);
+        if (fe.ContextMenu is ContextMenu menu)
+            EnsureTextContextMenuHandlers(menu);
     }
 
-    private static ContextMenu? ResolveDefaultTextContextMenu()
-    {
-        if (Application.Current is null) return null;
-        return Application.Current.TryFindResource("DefaultTextBoxContextMenu") as ContextMenu;
-    }
-
-    private static void EnsureSeparatorCleanupHandler(ContextMenu menu)
+    private static void EnsureTextContextMenuHandlers(ContextMenu menu)
     {
         if (!LooksLikeTextContextMenu(menu)) return;
         menu.Opened -= OnTextContextMenuOpened;
         menu.Opened += OnTextContextMenuOpened;
+        menu.RemoveHandler(MenuItem.ClickEvent, MenuItemClickHandler);
+        menu.AddHandler(MenuItem.ClickEvent, MenuItemClickHandler, true);
     }
 
     private static bool LooksLikeTextContextMenu(ContextMenu menu)
@@ -81,6 +73,17 @@ public static class TextContextMenuFix
     }
 
     private static void OnTextContextMenuOpened(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ContextMenu menu) return;
+        menu.Dispatcher.BeginInvoke(
+            () => CleanupRedundantSeparators(menu),
+            DispatcherPriority.Render);
+        menu.Dispatcher.BeginInvoke(
+            () => CleanupRedundantSeparators(menu),
+            DispatcherPriority.ApplicationIdle);
+    }
+
+    private static void OnTextContextMenuMenuItemClick(object sender, RoutedEventArgs e)
     {
         if (sender is not ContextMenu menu) return;
         menu.Dispatcher.BeginInvoke(

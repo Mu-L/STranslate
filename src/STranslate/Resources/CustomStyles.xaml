@@ -203,7 +203,10 @@
     <!--#endregion-->
 
     <!--#region TextBox-->
-    <ContextMenu x:Key="DefaultTextBoxContextMenu" Style="{DynamicResource {x:Static ui:ThemeKeys.DefaultContextMenuStyleKey}}">
+    <ContextMenu
+        x:Key="DefaultTextBoxContextMenu"
+        x:Shared="False"
+        Style="{DynamicResource {x:Static ui:ThemeKeys.DefaultContextMenuStyleKey}}">
         <ContextMenu.Resources>
             <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="MenuItem">
                 <Style.Triggers>
@@ -213,12 +216,18 @@
                 </Style.Triggers>
             </Style>
         </ContextMenu.Resources>
-        <MenuItem Command="ApplicationCommands.Undo" Header="{DynamicResource Undo}">
+        <MenuItem
+            Command="ApplicationCommands.Undo"
+            Header="{DynamicResource Undo}"
+            StaysOpenOnClick="True">
             <MenuItem.Icon>
                 <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ArrowUndo_20_Regular}" />
             </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Command="ApplicationCommands.Redo" Header="{DynamicResource Redo}">
+        <MenuItem
+            Command="ApplicationCommands.Redo"
+            Header="{DynamicResource Redo}"
+            StaysOpenOnClick="True">
             <MenuItem.Icon>
                 <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ArrowRedo_20_Regular}" />
             </MenuItem.Icon>
@@ -240,7 +249,10 @@
             </MenuItem.Icon>
         </MenuItem>
         <Separator />
-        <MenuItem Command="ApplicationCommands.SelectAll" Header="{DynamicResource SelectAll}">
+        <MenuItem
+            Command="ApplicationCommands.SelectAll"
+            Header="{DynamicResource SelectAll}"
+            StaysOpenOnClick="True">
             <MenuItem.Icon>
                 <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.SelectAllOn_20_Regular}" />
             </MenuItem.Icon>
