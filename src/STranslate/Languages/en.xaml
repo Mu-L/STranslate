@@ -329,6 +329,10 @@
     <sys:String x:Key="Prompt">Prompt</sys:String>
     <sys:String x:Key="Cancel">Cancel</sys:String>
     <sys:String x:Key="Copy">Copy</sys:String>
+    <sys:String x:Key="Cut">Cut</sys:String>
+    <sys:String x:Key="Paste">Paste</sys:String>
+    <sys:String x:Key="Undo">Undo</sys:String>
+    <sys:String x:Key="Redo">Redo</sys:String>
     <sys:String x:Key="Show">Show</sys:String>
     <sys:String x:Key="Hide">Hide</sys:String>
     <sys:String x:Key="Enable">Enable</sys:String>
