@@ -654,11 +654,19 @@
                                         </Style.Triggers>
                                     </Style>
                                 </ikw:SimpleStackPanel.Style>
-                                <control:IconButton
-                                    Command="{Binding RelativeSource={RelativeSource AncestorType=control:OutputControl}, Path=PlayAudioCommand}"
-                                    CommandParameter="{Binding Plugin.TransResult.Text}"
-                                    Icon="{x:Static ui:FluentSystemIcons.Speaker2_20_Regular}"
-                                    ToolTip="{DynamicResource Tts}" />
+                                <Grid>
+                                    <control:IconButton
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType=control:OutputControl}, Path=PlayAudioCommand}"
+                                        CommandParameter="{Binding Plugin.TransResult.Text}"
+                                        Icon="{x:Static ui:FluentSystemIcons.Speaker2_20_Regular}"
+                                        ToolTip="{DynamicResource Tts}"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=control:OutputControl}, Path=PlayAudioCommand.IsRunning, Converter={cnvt:BoolToVisibilityInverseConverter}}" />
+                                    <control:IconButton
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType=control:OutputControl}, Path=PlayAudioCancelCommand}"
+                                        Icon="{x:Static ui:FluentSystemIcons.Stop_20_Regular}"
+                                        ToolTip="{DynamicResource Cancel}"
+                                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=control:OutputControl}, Path=PlayAudioCommand.IsRunning, Converter={cnvt:BoolToVisibilityConverter}}" />
+                                </Grid>
                                 <control:IconButton
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=control:OutputControl}, Path=CopyCommand}"
                                     CommandParameter="{Binding Plugin.TransResult.Text}"

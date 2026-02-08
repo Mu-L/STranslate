@@ -96,6 +96,18 @@ public class OutputControl : ItemsControl
             typeof(ICommand),
             typeof(OutputControl));
 
+    public ICommand? PlayAudioCancelCommand
+    {
+        get => (ICommand?)GetValue(PlayAudioCancelCommandProperty);
+        set => SetValue(PlayAudioCancelCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty PlayAudioCancelCommandProperty =
+        DependencyProperty.Register(
+            nameof(PlayAudioCancelCommand),
+            typeof(ICommand),
+            typeof(OutputControl));
+
     public ICommand? PlayAudioUrlCommand
     {
         get => (ICommand?)GetValue(PlayAudioUrlCommandProperty);
