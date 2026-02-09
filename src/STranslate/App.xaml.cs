@@ -185,6 +185,8 @@ public partial class App : ISingleInstanceApp, INavigation, IDisposable
         // 注册编码提供程序以支持 GBK 等编码
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
+        TextContextMenuFix.Install();
+
         _logger = Ioc.Default.GetRequiredService<ILogger<App>>();
         _logger.LogInformation("Begin STranslate startup ----------------------------------------------------");
 

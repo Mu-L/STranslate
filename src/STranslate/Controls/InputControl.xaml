@@ -65,11 +65,18 @@
                                         </MultiBinding>
                                     </control:IconButton.Visibility>
                                 </control:IconButton>
-                                <control:IconButton
-                                    Command="{TemplateBinding PlayAudioCommand}"
-                                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Text}"
-                                    Icon="{x:Static ui:FluentSystemIcons.Speaker2_24_Regular}"
-                                    Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Text, Converter={cnvt:EqualToVisibilityInverseConverter}}" />
+                                <Grid Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Text, Converter={cnvt:EqualToVisibilityInverseConverter}}">
+                                    <control:IconButton
+                                        Command="{TemplateBinding PlayAudioCommand}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Text}"
+                                        Icon="{x:Static ui:FluentSystemIcons.Speaker2_24_Regular}"
+                                        Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PlayAudioCommand.IsRunning, Converter={cnvt:BoolToVisibilityInverseConverter}}" />
+                                    <control:IconButton
+                                        Command="{TemplateBinding PlayAudioCancelCommand}"
+                                        Icon="{x:Static ui:FluentSystemIcons.Stop_24_Regular}"
+                                        ToolTip="{DynamicResource Cancel}"
+                                        Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PlayAudioCommand.IsRunning, Converter={cnvt:BoolToVisibilityConverter}}" />
+                                </Grid>
                                 <control:IconButton
                                     Command="{TemplateBinding CopyCommand}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Text}"

@@ -167,6 +167,18 @@ public class InputControl : Control
             typeof(ICommand),
             typeof(InputControl));
 
+    public ICommand? PlayAudioCancelCommand
+    {
+        get => (ICommand?)GetValue(PlayAudioCancelCommandProperty);
+        set => SetValue(PlayAudioCancelCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty PlayAudioCancelCommandProperty =
+        DependencyProperty.Register(
+            nameof(PlayAudioCancelCommand),
+            typeof(ICommand),
+            typeof(InputControl));
+
     public ICommand? CopyCommand
     {
         get => (ICommand?)GetValue(CopyCommandProperty);

@@ -34,6 +34,10 @@
 
     <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="TextBox">
         <Setter Property="FontSize" Value="{DynamicResource STControlFontSize14}" />
+        <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
+        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
+        <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
+        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
     </Style>
 
     <!--#endregion-->
@@ -199,12 +203,69 @@
     <!--#endregion-->
 
     <!--#region TextBox-->
+    <ContextMenu
+        x:Key="DefaultTextBoxContextMenu"
+        x:Shared="False"
+        Style="{DynamicResource {x:Static ui:ThemeKeys.DefaultContextMenuStyleKey}}">
+        <ContextMenu.Resources>
+            <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="MenuItem">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ContextMenu.Resources>
+        <MenuItem
+            Command="ApplicationCommands.Undo"
+            Header="{DynamicResource Undo}"
+            StaysOpenOnClick="True">
+            <MenuItem.Icon>
+                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ArrowUndo_20_Regular}" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem
+            Command="ApplicationCommands.Redo"
+            Header="{DynamicResource Redo}"
+            StaysOpenOnClick="True">
+            <MenuItem.Icon>
+                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ArrowRedo_20_Regular}" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem Command="ApplicationCommands.Cut" Header="{DynamicResource Cut}">
+            <MenuItem.Icon>
+                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.Cut_20_Regular}" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="ApplicationCommands.Copy" Header="{DynamicResource Copy}">
+            <MenuItem.Icon>
+                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.Copy_20_Regular}" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Command="ApplicationCommands.Paste" Header="{DynamicResource Paste}">
+            <MenuItem.Icon>
+                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.ClipboardPaste_20_Regular}" />
+            </MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem
+            Command="ApplicationCommands.SelectAll"
+            Header="{DynamicResource SelectAll}"
+            StaysOpenOnClick="True">
+            <MenuItem.Icon>
+                <ui:FontIcon Icon="{x:Static ui:FluentSystemIcons.SelectAllOn_20_Regular}" />
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
 
     <Style x:Key="TextBlockSimilarStyle" TargetType="TextBox">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
-        <Setter Property="ContextMenu" Value="{DynamicResource {x:Static ui:ThemeKeys.TextControlContextMenuKey}}" />
-        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="True" />
+        <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
+        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
+        <Setter Property="ContextMenu" Value="{DynamicResource DefaultTextBoxContextMenu}" />
+        <Setter Property="ui:TextContextMenu.UsingTextContextMenu" Value="False" />
         <Setter Property="CaretBrush" Value="{DynamicResource {x:Static ui:ThemeKeys.TextControlForegroundKey}}" />
         <Setter Property="FontSize" Value="{DynamicResource STControlFontSize14}" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static ui:ThemeKeys.TextControlForegroundKey}}" />
